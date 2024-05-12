@@ -1,0 +1,17 @@
+{
+    "invalid": {
+        "email": "Admin",
+        "password": "a",
+        "firstName": "A",
+        "lastName": "A",
+        "mobile": "90",
+        "address": "ABC"
+    },
+    "valid": {
+        "password": "Abc12345",
+        "firstName": "Quyen",
+        "lastName": "Le Minh",
+        "mobile": "0476453621",
+        "address": "5 California Road, OXLEY  QLD 4075"
+    }
+}
