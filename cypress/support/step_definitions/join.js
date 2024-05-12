@@ -25,7 +25,8 @@ When(/I fill in registration form email "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" a
   registrationPage.inpuAddresWithAutosuggestion(address)
 })
 When("I click on Create Account button", () => {
-  cy.get(`button[id="create-account"]`).click({ force: true });
+  cy.get(`//span[contains(text(),'Create Account')]`).click({ force: true });
+  cy.wait(5000)
 })
 Then("I create new account successfully and navigate to the My Account page", () => {
   cy.xpath(`//span[contains(text(),'Your account is now active')]`).should('be.visible');
