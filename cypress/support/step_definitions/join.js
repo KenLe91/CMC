@@ -15,7 +15,7 @@ When("I click on Create Account", () => {
   cy.wait(500).xpath(`//span[text()='Create Account']`).click({ force: true });
 })
 Then("I should see the create account form", () => {
-  cy.get(`div[data-automation="single-sign-up-form"]`).should('be.visible');
+  cy.xpath(`//p[contains(text(),'Create your online account today.')]`).should('be.visible');
 })
 When(/I fill in registration form email "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" auto suggestion/, (password, firstName, lasName, mobile, address) => {
   const dayjs = require('dayjs');
