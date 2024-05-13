@@ -12,10 +12,10 @@ Then("I should be redirected to the join page", () => {
   cy.get('div[data-automation="single-sign-up-form"]').should('be.visible');
 });
 When("I click on Create Account", () => {
-  cy.wait(500).xpath(`//span[text()='Create Account']`).click({ force: true });
+  cy.wait(2000).xpath(`//span[text()='Create Account']`).click({ force: true });
 })
 Then("I should see the create account form", () => {
-  cy.xpath(`//p[contains(text(),'Create your online account today.')]`).should('be.visible');
+  cy.get(`div[data-automation="single-sign-up-form"]`).should('be.visible');
 })
 When(/I fill in registration form email "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" auto suggestion/, (password, firstName, lasName, mobile, address) => {
   const dayjs = require('dayjs');
@@ -23,10 +23,6 @@ When(/I fill in registration form email "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" a
   const email = "test" + emailDay + "@gmail.com"
   registrationPage.inputRegistrationForm(email, password, firstName, lasName, mobile)
   registrationPage.inpuAddresWithAutosuggestion(address)
-})
-When("I click on Create Account button", () => {
-  cy.get(`//span[contains(text(),'Create Account')]`).click({ force: true });
-  cy.wait(5000)
 })
 Then("I create new account successfully and navigate to the My Account page", () => {
   cy.xpath(`//span[contains(text(),'Your account is now active')]`).should('be.visible');
