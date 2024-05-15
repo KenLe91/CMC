@@ -17,18 +17,11 @@ When("I click on Create Account", () => {
 Then("I should see the create account form", () => {
   cy.get(`div[data-automation="single-sign-up-form"]`).should('be.visible');
 })
-When(/I fill in registration form email "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" auto suggestion/, (password, firstName, lasName, mobile, address) => {
-  const dayjs = require('dayjs');
-  const emailDay = dayjs().format('YYYYMMDDHHmmss')
-  const email = "test" + emailDay + "@gmail.com"
-  registrationPage.inputRegistrationForm(email, password, firstName, lasName, mobile)
-  registrationPage.inpuAddresWithAutosuggestion(address)
-})
 Then("I create new account successfully and navigate to the My Account page", () => {
   cy.xpath(`//span[contains(text(),'Your account is now active')]`).should('be.visible');
   cy.location('href').should('include', '/account')
 })
-When(/I fill in registration form with address manualy/, (password, firstName, lasName, mobile) => {
+When(/I fill in registration form with address manualy/, () => {
   cy.fixture('user.json').then((users) => {
     const dayjs = require('dayjs');
     const emailDay = dayjs().format('YYYYMMDDHHmmss')
