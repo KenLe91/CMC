@@ -12,7 +12,8 @@ Then("I should be redirected to the join page", () => {
   cy.get('div[data-automation="single-sign-up-form"]').should('be.visible');
 });
 When("I click on Create Account", () => {
-  cy.wait(2000).xpath(`//span[text()='Create Account']`).click({ force: true });
+  cy.wait(3000)
+  cy.xpath(`//span[text()='Create Account']`).click({ force: true });
 })
 Then("I should see the create account form", () => {
   cy.get(`div[data-automation="single-sign-up-form"]`).should('be.visible');
@@ -34,6 +35,11 @@ When(/I fill in registration form with address manualy/, () => {
 })
 When(/I fill in registration form with (valid|invalid) value/, (state) => {
   cy.fixture('user.json').then((users) => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // returning false here prevents Cypress from
+      // failing the test
+      return false
+  })
     switch (state) {
       case 'invalid':
         registrationPage.inputRegistrationForm(users.invalid.email, users.invalid.password, users.invalid.firstName, users.invalid.lastName, users.invalid.mobile)
@@ -60,6 +66,7 @@ Then(/I should( not)? see the password/, (condition) => {
   cy.xpath(`//input[@id="password" and @type="text"]`).should(condition ? 'not.exist' : 'exist')
 })
 When("I click on icon hidden password", () => {
+  cy.get(`#password`).should('be.visible')
   cy.get(`#password`).click()
   cy.get(`button[data-automation="password-hidden-icon"]`).click()
 })

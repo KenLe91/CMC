@@ -13,7 +13,7 @@ class registrationPage {
     state = `div[id="stateCode"]`
     inputRegistrationForm(email, password, firstName, lasName, mobilePhone) {
         cy.get(`div[data-automation="single-sign-up-form"]`).should('be.visible');
-        cy.get(this.password).should('exist')
+        cy.get(this.password).should('be.visible')
         cy.get(this.email).type(email)
         cy.get(this.password).type(password)
         cy.get(this.firstName).type(firstName)
